@@ -10,7 +10,7 @@ import math
 from pygame.locals import RLEACCEL, QUIT, K_r, K_SPACE, K_UP, K_LEFT, K_RIGHT
 #from pygame.locals import *
 
-FPS = 80
+FPS = 20
 
 pygame.init()
 
@@ -31,8 +31,8 @@ def load_image(name, colorkey=None):
     fullname = os.path.join('lunarlander', name)
     try:
         image = pygame.image.load(fullname)
-    except pygame.error, message:
-        print 'Cannot load image:', fullname
+    except pygame.error as message:
+        print('Cannot load image:', fullname)
         raise SystemExit(message)
     image = image.convert()
     if colorkey is not None:
@@ -190,7 +190,7 @@ class Moon(pygame.sprite.DirtySprite):
 class Boulder(pygame.sprite.DirtySprite):
     def __init__(self):
         self.diameter = random.randint(2, 300)
-        self.radius = self.diameter / 2
+        self.radius = self.diameter // 2
         self.x_pos = random.randint(0, SCREEN_WIDTH)
         self.image = pygame.Surface((self.diameter, self.diameter))
         #self.image.fill((255,255,255,128))
